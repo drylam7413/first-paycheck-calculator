@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="월 실수령액과 생활비로 이번 달 남는 돈을 계산해 보세요.">
+  <title>첫월급 계산실</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="container">
+    <header class="intro">
+      <p class="eyebrow">내 월급, 한눈에 정리</p>
+      <h1>첫월급 계산실<span class="version">V0.1</span></h1>
+      <p>생활비를 빼고 나면,<br>이번 달 얼마가 남을까요?</p>
+    </header>
+
+    <form id="calculator" class="card" novalidate>
+      <p id="input-guide" class="guide">숫자는 <strong>2500000</strong> 또는 <strong>2,500,000</strong>, 한글 단위는 <strong>250만원</strong> 또는 <strong>250만5천원</strong>처럼 입력하세요. 억·만·천·백·십·원을 지원하며, 각 단위 앞에 숫자를 적어 주세요. 단위는 반복 없이 큰 순서로 쓰되, <strong>2백만원</strong>처럼 억·만 앞의 작은 단위는 묶어서 계산합니다. 항목별 최대 10억 원까지 입력할 수 있어요.</p>
+
+      <div class="field income-field">
+        <label for="income">월 실수령액 <span class="required">필수</span></label>
+        <p id="income-hint" class="hint">세금을 뺀 뒤 실제로 받는 금액</p>
+        <div class="input-wrap"><input id="income" name="income" type="text" inputmode="text" placeholder="예: 250만원" autocomplete="off" spellcheck="false" aria-required="true" aria-describedby="income-hint input-guide income-error"><span aria-hidden="true">원</span></div>
+        <p id="income-error" class="error" hidden></p>
+      </div>
+
+      <fieldset>
+        <legend>한 달 생활비</legend>
+        <p id="expense-hint" class="hint">비워 둔 항목은 0원으로 계산해요.</p>
+        <div class="expense-grid">
+          <div class="field">
+            <label for="housing">월세·관리비</label>
+            <div class="input-wrap"><input id="housing" name="housing" type="text" inputmode="text" placeholder="0" autocomplete="off" spellcheck="false" aria-describedby="expense-hint input-guide housing-error"><span aria-hidden="true">원</span></div>
+            <p id="housing-error" class="error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="food">식비</label>
+            <div class="input-wrap"><input id="food" name="food" type="text" inputmode="text" placeholder="0" autocomplete="off" spellcheck="false" aria-describedby="expense-hint input-guide food-error"><span aria-hidden="true">원</span></div>
+            <p id="food-error" class="error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="transport">교통·통신비</label>
+            <div class="input-wrap"><input id="transport" name="transport" type="text" inputmode="text" placeholder="0" autocomplete="off" spellcheck="false" aria-describedby="expense-hint input-guide transport-error"><span aria-hidden="true">원</span></div>
+            <p id="transport-error" class="error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="fixed">보험·대출 등 고정지출</label>
+            <div class="input-wrap"><input id="fixed" name="fixed" type="text" inputmode="text" placeholder="0" autocomplete="off" spellcheck="false" aria-describedby="expense-hint input-guide fixed-error"><span aria-hidden="true">원</span></div>
+            <p id="fixed-error" class="error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="other">기타 생활비</label>
+            <div class="input-wrap"><input id="other" name="other" type="text" inputmode="text" placeholder="0" autocomplete="off" spellcheck="false" aria-describedby="expense-hint input-guide other-error"><span aria-hidden="true">원</span></div>
+            <p id="other-error" class="error" hidden></p>
+          </div>
+        </div>
+      </fieldset>
+      <button type="submit">이번 달 남는 돈 계산하기 <span aria-hidden="true">→</span></button>
+      <p id="form-status" class="form-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    </form>
+
+    <section id="result" class="card result" aria-labelledby="result-title" hidden>
+      <h2 id="result-title">이번 달 남는 돈</h2>
+      <p id="remaining-value" class="remaining"></p>
+      <p id="balance-status" class="balance-status"></p>
+      <dl class="summary">
+        <div><dt>월 실수령액</dt><dd id="income-value"></dd></div>
+        <div><dt>총지출</dt><dd id="expense-value"></dd></div>
+      </dl>
+      <p class="result-note">남는 돈은 아직 사용처를 정하지 않은 <strong>미배분 금액</strong>이며, 확정 저축액이 아닙니다.</p>
+    </section>
+    <footer>입력한 금액은 저장하거나 외부로 전송하지 않습니다.</footer>
+  </main>
+</body>
+</html>
